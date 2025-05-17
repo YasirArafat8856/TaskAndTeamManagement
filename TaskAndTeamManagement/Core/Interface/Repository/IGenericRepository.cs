@@ -11,6 +11,7 @@ namespace TaskAndTeamManagement.Core.Interface.Repository
             //Task<T> GetByIdWithoutTrackingAsync(int id);
             Task<T> GetEntityWithSpec(ISpecification<T> spec);
             Task<IReadOnlyList<T>> GetAllListAsync(ISpecification<T> spec);
+            
             Task<int> CountAsync(ISpecification<T> spec);
             Task<bool> AddDataAsync(T entity);
             Task<bool> UpdateDataAsync(T entity);

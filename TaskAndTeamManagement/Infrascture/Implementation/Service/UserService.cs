@@ -11,6 +11,7 @@ namespace TaskAndTeamManagement.Infrascture.Implementation.Service
     {
         public async Task<User> GetByIdAsync(int id) => await _userRepo.GetByIdAsync(id);
         public async Task<IReadOnlyList<User>> GetAllListAsync(ISpecification<User> spec) => await _userRepo.GetAllListAsync(spec);
+        public async Task<IReadOnlyList<User>> GetAllListAsync() => await _context.Users.ToListAsync();
         public async Task<bool> AddDataAsync(User user) => await _userRepo.AddDataAsync(user);
         public async Task<bool> UpdateDataAsync(User user) => await _userRepo.UpdateDataAsync(user);
         public async Task<bool> DeleteAsync(int id) => await _userRepo.DeleteAsync(id);

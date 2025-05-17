@@ -16,6 +16,7 @@ namespace TaskAndTeamManagement.Infrascture.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            #region Task
             modelBuilder.Entity<Core.Entities.Task>()
                .HasOne(t => t.AssignedToUser)
                .WithMany(u => u.AssignedTasks)
@@ -35,6 +36,32 @@ namespace TaskAndTeamManagement.Infrascture.Data
                 .WithMany()
                 .HasForeignKey(t => t.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
+            #endregion
+
+            #region Team
+            // Self-referencing Team Relationship
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.AssignedTeam)
+                .WithMany()
+                .HasForeignKey(t => t.AssignedTeamId)
+                .OnDelete(DeleteBehavior.Restrict); 
+
+            // Team - AssignedToUser
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.AssignedToUser)
+                .WithMany(u => u.AssignedTeams)
+                .HasForeignKey(t => t.AssignedToUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Team - CreatedByUser
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.CreatedByUser)
+                .WithMany(u => u.CreatedTeams)
+                .HasForeignKey(t => t.CreatedByUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            #endregion
+
+            
 
 
             // seed data

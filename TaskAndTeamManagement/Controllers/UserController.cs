@@ -24,7 +24,7 @@ namespace TaskAndTeamManagement.Controllers
         [HttpGet("get-all-users")]
         public async Task<ActionResult<Pagination<ReturnUserDto>>> GetAllUsers()
         {
-            var users = await _userService.GetAllListAsync(null);
+            var users = await _userService.GetAllListAsync();
             return Ok(_mapper.Map<IReadOnlyList<ReturnUserDto>>(users));
         }
 
